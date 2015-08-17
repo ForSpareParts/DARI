@@ -17,7 +17,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 from alerts import urls as alert_urls
-#from inventory import urls as inventory_urls
+from inventory import urls as inventory_urls
 from server.router import router
 
 

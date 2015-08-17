@@ -67,9 +67,9 @@ class ItemRequisition(models.Model):
     '''Represents an Agent's checkout of an item'''
 
     item = models.ForeignKey('Item')
+    checked_out_by = models.CharField(max_length=255)
     checked_out_on = models.DateTimeField(auto_now_add=True)
     checked_in_on = models.DateTimeField()
-    agent_identifier = models.CharField(max_length=255)
     last_modified_on = models.DateTimeField(auto_now=True)
 
     def save(self, *args, **kwargs):
