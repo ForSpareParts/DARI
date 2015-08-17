@@ -28,6 +28,7 @@ class AlertQuerySet(models.QuerySet):
 class Alert(models.Model):
 
     username = models.CharField(max_length=255)
+    type = models.CharField(max_length=25)
     text = models.TextField(blank=True, default='')
     set_on = models.DateTimeField(auto_now_add=True)
     alert_on = models.DateTimeField(blank=True, default=timezone.now) 

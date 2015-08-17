@@ -7,4 +7,3 @@ class AlertSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Alert
-        fields = ('username', 'text', 'set_on', 'alert_on', 'cleared_on')

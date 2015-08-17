@@ -1,0 +1,13 @@
+<h2 id="title">DARI</h2>
+
+<div class="bootstrap-wrapper">
+    <div class="menu">
+        {{ alert-list title="Needs" alerts=needsList }}
+        {{ alert-list title="Returns" alerts=returnsList }}
+        {{#link-to "checkin"}}Open Reqs{{/link-to}}
+    </div>
+    <div class="content">
+        {{outlet}}
+    </div>
+</div>
+
