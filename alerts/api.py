@@ -13,7 +13,7 @@ class AlertViewSet(
 
     get_queryset = models.Alert.objects.all
     serializer_class = serializers.AlertSerializer
-    filter_fields = ('username', 'text')
+    filter_fields = ('username', 'type', 'text')
 
     def filter_queryset(self, queryset):
         active = self.request.query_params.get('active')

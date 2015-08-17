@@ -106,3 +106,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'inventory.InventoryUser'
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': (
+        #'base.filters.CoalesceFilterBackend',
+        'rest_framework.filters.DjangoFilterBackend',
+        'rest_framework.filters.SearchFilter')
+}

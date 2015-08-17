@@ -1,0 +1,20 @@
+<thead>
+    <tr>
+        <th>Category</th>
+        <th>Item</th>
+        <th>Material #</th>
+        <th>Serial Number</th>
+        <th>Current Qty</th>
+    </tr>
+</thead>
+<tbody>
+    {{#each attrs.items as |item|}}
+        <tr>
+            <td>{{item.category}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.materialNumber}}</td>
+            <td>{{item.serialNumber}}</td>
+            <td>{{item.currentQty}}</td>
+        </tr>
+    {{/each}}
+</tbody>

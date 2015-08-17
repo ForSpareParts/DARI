@@ -1,0 +1,6 @@
+<h3>{{ attrs.title }}</h3>
+<ul>
+    {{#each attrs.alerts as |alert|}}
+        <li>{{ alert.username }}: {{alert.text}}</li>
+    {{/each}}
+</ul>
