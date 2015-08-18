@@ -6,12 +6,12 @@
     <header>{% block header %}{% endblock %}</header>
     <div class="menu">
     {% block menu %}
-      {% include "_alert_list.html" 
+      {% include "_alert_list.html" with
         title="Needs"
         command="en"
         target_url={% url 'checkout' %} %}
 
-      {% include "_alert_list.html" 
+      {% include "_alert_list.html" with
         title="Returns"
         command="er"
         target_url={% url 'checkin' %} %}
