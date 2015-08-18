@@ -39,7 +39,7 @@ class Item(models.Model):
         if items:
             item = items.latest('inventory_loaded_on')
         out_cnt = (ItemRequisition.objects
-            .count(item=item, checked_out_on__lte=as_of, check_in_on=None))
+            .filter(item=item, checked_out_on__lte=as_of, check_in_on=None))
         return item.qty_at_inventory - Item
 
     def save(self, *args, **kwargs):
@@ -77,10 +77,11 @@ class ItemRequisition(models.Model):
     item = models.ForeignKey('Item')
     checked_out_by = models.CharField(max_length=255)
     checked_out_on = models.DateTimeField(auto_now_add=True)
-    checked_in_on = models.DateTimeField()
+    checked_in_on = models.DateTimeField(blank=True, null=True)
     last_modified_on = models.DateTimeField(auto_now=True)
 
     def save(self, *args, **kwargs):
-        assert item.current_qty > 0, 'There are none of this item to check out'
+        assert self.item.current_qty > 0, \
+            'There are no {0} to check out'.format(item.name)
         super(ItemRequisition, self).save(*args, **kwargs)
         self.item.save()

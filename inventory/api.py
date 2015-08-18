@@ -17,12 +17,19 @@ class ItemViewSet(
         'last_modified_on', 'current_qty', 'superceded_by')
 
     def filter_queryset(self, queryset):
-        superceded = self.request.query_params.get('superceded')
+        params = self.request.query_params
+        superceded = params.get('superceded')
         if superceded:
             if int(superceded):
                 queryset = queryset.exclude(superceded_by=None)
             else:
                 queryset = queryset.filter(superceded_by=None)
+        current_qty__ = [
+            (k, params[k]) for k in params.keys()
+            if k.startswith('current_qty__') ]
+        if current_qty__:
+            key, value = current_qty__[0]
+            queryset = queryset.filter(**{key: value})
         return super(ItemViewSet, self).filter_queryset(queryset)
 
 

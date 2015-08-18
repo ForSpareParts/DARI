@@ -2,9 +2,9 @@
 
 <div class="bootstrap-wrapper">
     <div class="menu">
-        {{ alert-list title="Needs" alerts=model.needs }}
-        {{ alert-list title="Returns" alerts=model.returns }}
-        {{#link-to "checkin"}}Open Reqs{{/link-to}}
+        {{alert-list title="Needs" alerts=model.needs}}
+        {{alert-list title="Returns" alerts=model.returns}}
+        {{#link-to "item-requisitions"}}Open Reqs{{/link-to}}
     </div>
     <div class="content">
         {{outlet}}

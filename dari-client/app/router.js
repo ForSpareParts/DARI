@@ -8,6 +8,7 @@ var Router = Ember.Router.extend({
 Router.map(function() {
   this.route('checkout', {path: 'checkout/:id'});
   this.route('checkin', {path: 'checkin/:id'});
+  this.route('item-requisitions');
 });
 
 export default Router;

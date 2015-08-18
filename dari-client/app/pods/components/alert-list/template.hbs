@@ -1,6 +1,10 @@
 <h3>{{ attrs.title }}</h3>
 <ul>
     {{#each attrs.alerts as |alert|}}
-        <li>{{ alert.username }}: {{alert.text}}</li>
+        <li>
+            {{#link-to "checkout" alert.id}}
+                {{ alert.username }}: {{alert.text}}
+            {{/link-to}}
+        </li>
     {{/each}}
 </ul>
