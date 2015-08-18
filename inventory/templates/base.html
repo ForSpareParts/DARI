@@ -1,0 +1,23 @@
+<html>
+  <head>
+  </head>
+
+  <body>
+    <header>{% block header %}{% endblock %}</header>
+    <div class="menu">
+    {% block menu %}
+      {% include "_alert_list.html" 
+        title="Needs"
+        command="en"
+        target_url={% url 'checkout' %} %}
+
+      {% include "_alert_list.html" 
+        title="Returns"
+        command="er"
+        target_url={% url 'checkin' %} %}
+    {% endblock %}
+    </div>
+    <div class="content">
+    </div>
+  </body>
+</html>
