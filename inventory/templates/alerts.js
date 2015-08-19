@@ -9,7 +9,14 @@ var AlertList = function(selector) {
   this.template = this.list.filter('li.template');
 
   this.command = this.container.data('command');
+  this.cacheKey = 'alert-list-cache-' + this.command;
   this.inProgressAjax = null;
+
+  //see if we've got anything to render from a previous page load
+  var cache = this.getCache();
+  if (cache) {
+    this.render(cache);
+  }
 };
 
 /**
@@ -45,10 +52,32 @@ AlertList.prototype.ajaxError = function() {
 
 AlertList.prototype.handleAjax = function(data, textStatus, jqXHR) {
   this.inProgressAjax = null;
+  this.setCache(data);
   this.render(data);
 
-  return this.startPoll();
+  //delay the next poll for a few seconds
+  setTimeout(this.startPoll, 5000);
 };
+
+/**
+ * Store a snapshot of this list's alerts in a localStorage cache.
+ */
+AlertList.prototype.setCache = function(data) {
+  localStorage.setItem(this.cacheKey, JSON.stringify(data));
+}
+
+/**
+ * Retrieve a snapshot of this list's alerts from a localStorage cache.
+ */
+AlertList.prototype.getCache = function() {
+  var cachedString = localStorage.getItem(this.cacheKey);
+
+  if (cachedString) {
+    return JSON.parse(cachedString);
+  }
+
+  return null;
+}
 
 /**
  * Eliminate all visible alerts from the view.
