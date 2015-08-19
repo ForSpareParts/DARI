@@ -1,20 +1,20 @@
+{% load staticfiles %}
+
 <html>
   <head>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" async="" src="{% static "inventory/alerts.js" %}"></script>
   </head>
 
   <body>
     <header>{% block header %}{% endblock %}</header>
     <div class="menu">
     {% block menu %}
-      {% include "_alert_list.html" with
-        title="Needs"
-        command="en"
-        target_url={% url 'checkout' %} %}
+      {% url "checkout" as checkout_url %}
+      {% url "checkin" as checkin_url %}
+      {% include "_alert_list.html" with title="Needs" command="en" target_url=checkout_url %}
 
-      {% include "_alert_list.html" with
-        title="Returns"
-        command="er"
-        target_url={% url 'checkin' %} %}
+      {% include "_alert_list.html" with title="Returns" command="er" target_url=checkin_url %}
     {% endblock %}
     </div>
     <div class="content">

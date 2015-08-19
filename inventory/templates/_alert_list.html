@@ -1,4 +1,6 @@
-<div class="alert-menu" id="{{command}}-alerts" data-command="{{command}}">
+<div class="alert-menu" id="{{command}}-alerts"
+  data-command="{{command}}"
+  data-alert-api-url="{% url "alert-list" %}">
   <h3>{{title}}</h3>
   <ul class="alerts">
     <li class="template"><a href="{{target_url}}">
